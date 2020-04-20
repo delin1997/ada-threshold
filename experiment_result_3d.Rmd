@@ -1,0 +1,39 @@
+---
+title: "Experiment Result 3D"
+author: "Zhao delin"
+date: "2020/4/20"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(rgl)
+library(R.matlab)
+knit_hooks$set(webgl = hook_webgl)
+source("ada_threshold_3d.R")
+```
+
+## True label
+```{r test1, webgl=TRUE, fig.width = 14, fig.height = 9, warning=FALSE}
+volume <- readMat('sample.mat')$vol
+label  <- readMat('true_label.mat')$md
+label[label!=0] = 1
+true_plot <- which(label==1, arr.ind = TRUE)
+plot3d(true_plot, col = rgb(0,0,1,0.2))
+```
+
+## Adaptive-thresholding
+```{r test2, webgl=TRUE, fig.width = 14, fig.height = 9}
+ada <- ada_threshold_3d(volume)
+ada_plot <- which(ada==1, arr.ind = TRUE)
+plot3d(ada_plot, col = rgb(0,0,1,0.2))
+```
+
+```{r}
+TP <- sum(label==1&ada==1)/sum(label==1)
+FP <- 1-TP
+TN <- sum(label==0&ada==0)/sum(label==0)
+FN <- 1-TN
+c(TP=TP,FP=FP,TN=TN,FN=FN)
+```
+

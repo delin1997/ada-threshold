@@ -1,0 +1,38 @@
+---
+title: "Experiment Result"
+author: "Zhao delin"
+date: "2020/4/20"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(png)
+library(grid)
+source("ada_threshold.R")
+```
+
+## Original
+```{r}
+image1 <- readPNG("image1.png")[,,1]
+image2 <- readPNG("image2.png")[,,1]
+grid.newpage()
+grid.raster(image1)
+grid.newpage()
+grid.raster(image2)
+```
+
+## Adaptive thresholding
+```{r}
+grid.newpage()
+par(mfrow=c(1,2))
+ada1 <- ada_threshold(data = image1)
+# writePNG(ada1, "ada_image1.png")
+ada2 <- ada_threshold(data = image2)
+# writePNG(ada2, "ada_image2.png")
+grid.newpage()
+grid.raster(ada1)
+grid.newpage()
+grid.raster(ada2)
+```
+
