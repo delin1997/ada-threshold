@@ -8,10 +8,14 @@ output: html_document
 ```{r setup, include=FALSE}
 library(knitr)
 library(rgl)
-library(R.matlab)
 knit_hooks$set(webgl = hook_webgl)
+```
+
+```{r warning=FALSE}
+library(R.matlab)
 source("ada_threshold_3d.R")
 ```
+
 
 ## True label
 ```{r test1, webgl=TRUE, fig.width = 14, fig.height = 9, warning=FALSE}

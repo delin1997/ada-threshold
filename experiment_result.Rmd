@@ -7,6 +7,9 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r warning=FALSE}
 library(png)
 library(grid)
 source("ada_threshold.R")
