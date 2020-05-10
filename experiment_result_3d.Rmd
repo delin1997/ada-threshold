@@ -35,9 +35,9 @@ plot3d(ada_plot, col = rgb(0,0,1,0.2))
 
 ```{r}
 TP <- sum(label==1&ada==1)/sum(label==1)
-FP <- 1-TP
+FN <- 1-TP
 TN <- sum(label==0&ada==0)/sum(label==0)
-FN <- 1-TN
-c(TP=TP,FP=FP,TN=TN,FN=FN)
+FP <- 1-TN
+c(TP=TP,FN=FN,TN=TN,FP=FP)
 ```
 
